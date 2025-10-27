@@ -1,0 +1,1 @@
+pip install numpy pillow matplotlib scipy imageio imageio-ffmpeg
