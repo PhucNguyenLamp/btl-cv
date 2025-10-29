@@ -36,7 +36,12 @@ pts1, pts2 = pick_corresponding_points_side_by_side(img1, img2)
 triangles = delaunay_triangulation(np.array(pts1))
 
 # Morph sequence
-for alpha in np.linspace(0, 1, 11):
-    morphed = morph_images(img1, img2, pts1, pts2, triangles, alpha)
-    cv2.imshow("Morph", morphed)
-    cv2.waitKey(100)
+while True:
+    for alpha in np.linspace(0, 1, 11):
+        morphed = morph_images(img1, img2, pts1, pts2, triangles, alpha)
+        cv2.imshow("Morph", morphed)
+        key = cv2.waitKey(30)
+        if key == 27:  # ESC to exit
+            break
+    if key == 27:  # ESC to exit
+        break
