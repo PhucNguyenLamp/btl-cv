@@ -55,7 +55,9 @@ def pick_corresponding_points_side_by_side(img1, img2, radius=5):
 
     cv2.namedWindow("Side-by-side Picker")
     cv2.setMouseCallback("Side-by-side Picker", mouse_callback)
-    print("🖱️ Left = click to add points. Right = drag to match. Press ENTER when done.")
+    print(
+        "🖱️ Left = click to add points. Right = drag to match. Press 'd' to delete last point. Press ENTER when done."
+    )
 
     while True:
         display = combined.copy()
@@ -96,6 +98,11 @@ def pick_corresponding_points_side_by_side(img1, img2, radius=5):
         elif key == 27:  # ESC
             pts1, pts2 = [], []
             break
+        elif key == ord("d"):  # Delete last point
+            if pts1:
+                pts1.pop()
+                pts2.pop()
+                print(f"✗ Deleted last point. Remaining: {len(pts1)}")
 
     cv2.destroyAllWindows()
 
